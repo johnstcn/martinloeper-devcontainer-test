@@ -2,6 +2,7 @@
 	"name": "Testproject",
 	"image": "mcr.microsoft.com/devcontainers/go:1-1.22-bookworm",
 	"features": {
-		"ghcr.io/devcontainers-extra/features/kubectl-asdf:2": {}
+		"ghcr.io/devcontainers-extra/features/kubectl-asdf:2": {},
+		"ghcr.io/devcontainers/features/docker-outside-of-docker:1": {}
 	}
 }
