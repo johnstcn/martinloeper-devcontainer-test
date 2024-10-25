@@ -1,11 +1,33 @@
 {
 	"name": "Testproject",
-	"image": "mcr.microsoft.com/devcontainers/go:1-1.22-bookworm",
+	"build": {
+		"dockerfile": "Dockerfile"
+	},
 	"features": {
 		"ghcr.io/devcontainers-extra/features/kubectl-asdf:2": {},
 		"ghcr.io/devcontainers/features/docker-outside-of-docker:1": {},
 		"ghcr.io/lentzi90/features/tilt:0": {},
-		"ghcr.io/dhoeric/features/k9s:1": {}
+		"ghcr.io/dhoeric/features/k9s:1": {},
+		"ghcr.io/devcontainers/features/aws-cli:1": {}
 	},
-	"containerUser": "vscode"
+
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"golang.go",
+				"Tchoupinax.tilt",
+				"GitHub.copilot"
+			]
+		}
+	},
+
+	"remoteEnv": {
+		"NESTO_CONTAINER_WORKSPACE_ROOT": "${containerWorkspaceFolder}"
+	},
+
+	// TODO: how to reference relatively in coder
+	"postCreateCommand": "/workspaces/devcontainer-test/.devcontainer/post-create.sh",
+
+	// note: this is required due to how envbuilder works -> we change the user in the startup script
+	"containerUser": "root"
 }

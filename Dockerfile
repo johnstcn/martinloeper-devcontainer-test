@@ -1,4 +1,7 @@
-FROM debian
+FROM scratch
 
-RUN apt-get update
-RUN apt-get install -y golang
+WORKDIR /app
+
+ADD build build
+
+ENTRYPOINT [ "/app/build/backend" ]

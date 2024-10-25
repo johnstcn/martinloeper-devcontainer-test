@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# set -eo pipefail
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
+# the following requests a statically linked binary -> we must not depend on any C libraries to use the alpine image
+export CGO_ENABLED=0
+export GOOS=linux
+export GOARCH=amd64
+
+# read the current tag if a tag is checked out, otherwise use the commit hash
+export NESTO_APP_VERSION=$(git describe --tags --always)
+
+(cd "${SCRIPT_DIR}/.." && go build -v -ldflags="-X main.Version=$NESTO_APP_VERSION" -o "${SCRIPT_DIR}/../build/backend" cmd/main.go)
