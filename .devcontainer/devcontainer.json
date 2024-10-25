@@ -7,5 +7,6 @@
 		"ghcr.io/lentzi90/features/tilt:0": {},
 		"ghcr.io/dhoeric/features/k9s:1": {}
 	},
-	"containerUser": "vscode"
+	"containerUser": "root",
+	"remoteUser": "vscode"
 }
