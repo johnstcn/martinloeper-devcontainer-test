@@ -1,5 +1,7 @@
 # -*- mode: Python -*-
 
+load('ext://k8s_attach', 'k8s_attach')
+
 allow_k8s_contexts('default')
 
 # Get environment variables
@@ -20,9 +22,13 @@ custom_build(
   'go-test',
   './scripts/docker-build.sh $EXPECTED_REF',
   deps=['.'],
-  skips_local_docker=True
+  skips_local_docker=True,
+  ignore=['./internal', './cmd'],
+  entrypoint=['/app/helpers/start.sh', '/app/build/backend'],
+  live_update=[
+    sync('./build', '/app/build'),
+    run('/app/helpers/restart.sh')
+  ]
 )
 
-k8s_yaml(
-    'infra/deployment.yaml',
-)
+k8s_yaml('infra/deployment.yaml')

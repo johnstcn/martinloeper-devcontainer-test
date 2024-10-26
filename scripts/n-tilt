@@ -2,4 +2,10 @@
 # set -eo pipefail
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
+if [ ! -f "/home/vscode/.local/bin/xdg-open" ]; then
+    echo "Installing xdg-open..."
+    install -d /home/vscode/.local/bin/
+    ln -s "$BROWSER" "/home/vscode/.local/bin/xdg-open"
+fi
+
 (cd "${SCRIPT_DIR}/.." && tilt up --legacy)
