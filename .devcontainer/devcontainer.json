@@ -29,5 +29,6 @@
 	"postCreateCommand": "/workspaces/devcontainer-test/.devcontainer/post-create.sh",
 
 	// note: this is required due to how envbuilder works -> we change the user in the startup script
-	"containerUser": "root"
+	"containerUser": "root",
+	"remoteUser": "vscode"
 }
