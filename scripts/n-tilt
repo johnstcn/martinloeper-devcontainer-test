@@ -2,10 +2,29 @@
 # set -eo pipefail
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
+# write a custom xdg-open script to open another URL instead of the default tilt URL
 if [ ! -f "/home/vscode/.local/bin/xdg-open" ]; then
     echo "Installing xdg-open..."
     install -d /home/vscode/.local/bin/
-    ln -s "$BROWSER" "/home/vscode/.local/bin/xdg-open"
+    
+    cat <<'EOF' > /home/vscode/.local/bin/xdg-open
+#!/bin/bash
+
+# TODO: print message when arg is not a URL
+if [ "$1" == "http://127.0.0.1:10350/" ]; then
+    $BROWSER $NESTO_TILT_URL   
+else
+    $BROWSER $*
 fi
 
-(cd "${SCRIPT_DIR}/.." && tilt up --legacy)
+EOF
+
+chmod +x /home/vscode/.local/bin/xdg-open
+fi
+
+# stop the placeholder server if it is running
+pkill -ef -SIGKILL "busybox httpd" || true
+
+tilt analytics opt out
+
+(cd "${SCRIPT_DIR}/.." && tilt up --host 0.0.0.0)

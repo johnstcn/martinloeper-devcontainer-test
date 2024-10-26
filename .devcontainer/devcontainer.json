@@ -22,7 +22,8 @@
 	},
 
 	"remoteEnv": {
-		"NESTO_CONTAINER_WORKSPACE_ROOT": "${containerWorkspaceFolder}"
+		"NESTO_CONTAINER_WORKSPACE_ROOT": "${containerWorkspaceFolder}",
+		"DO_NOT_TRACK": "1"
 	},
 
 	// TODO: how to reference relatively in coder

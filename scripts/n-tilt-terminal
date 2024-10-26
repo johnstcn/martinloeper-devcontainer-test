@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# set -eo pipefail
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
+tilt analytics opt out
+
+(cd "${SCRIPT_DIR}/.." && tilt up --legacy)

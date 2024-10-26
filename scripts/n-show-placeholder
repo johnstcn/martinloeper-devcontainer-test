@@ -1,0 +1,63 @@
+#!/bin/bash
+
+# Define the port and error message file
+PORT=10350
+ERROR_DIR="/tmp/dummy-serve"
+ERROR_MESSAGE="${ERROR_DIR}/index.html"
+
+install -d "${ERROR_DIR}"
+
+# Create a basic error message HTML file
+echo "<!DOCTYPE html>
+<html lang=\"en\">
+<head>
+    <meta charset=\"UTF-8\">
+    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
+    <title>Service Unavailable</title>
+    <style>
+        body {
+            background-color: #2E3A46;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: #F3F4F6;
+        }
+        .error-container {
+            background-color: #1C2833;
+            border-radius: 8px;
+            padding: 30px;
+            max-width: 400px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+        .error-container h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #E74C3C;
+        }
+        .error-container p {
+            font-size: 16px;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class=\"error-container\">
+        <h1>Please start Tilt first!</h1>
+        <p>The Tilt service is not up yet. Open your workspace and run <b>n-tilt</b>.</p>
+    </div>
+</body>
+</html>" > "$ERROR_MESSAGE"
+
+# Install busybox if it is not already installed
+if ! command -v busybox &> /dev/null; then
+    echo "Installing busybox..."
+    sudo apt update && sudo apt install -y busybox
+fi
+
+# Start busybox HTTP server in the current directory
+echo "Starting HTTP server on port $PORT..."
+busybox httpd -p "$PORT" -h "${ERROR_DIR}"
