@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# Install busybox if it is not already installed
+if ! command -v httpie &> /dev/null; then
+    echo "Installing busybox..."
+    sudo apt update && sudo apt install -y httpie
+fi
+
+http GET app.${NESTO_USER_WORKSPACE_NAME}.svc.cluster.local/$@
