@@ -2,7 +2,7 @@
 
 # Install busybox if it is not already installed
 if ! command -v httpie &> /dev/null; then
-    echo "Installing busybox..."
+    echo "Installing httpie..."
     sudo apt update && sudo apt install -y httpie
 fi
 
