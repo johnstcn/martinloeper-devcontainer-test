@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# set -eo pipefail
+
+dlv connect app.${NESTO_USER_WORKSPACE_NAME}.svc.cluster.local:12345

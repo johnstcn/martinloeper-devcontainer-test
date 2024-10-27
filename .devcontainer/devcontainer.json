@@ -16,7 +16,8 @@
 			"extensions": [
 				"golang.go",
 				"Tchoupinax.tilt",
-				"GitHub.copilot"
+				"GitHub.copilot",
+				"Postman.postman-for-vscode"
 			]
 		}
 	},
