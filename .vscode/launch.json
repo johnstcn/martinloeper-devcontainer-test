@@ -7,7 +7,7 @@
             "request": "attach",
             "mode": "remote",
             "port": 12345,
-            "host": "app.${env:NESTO_USER_WORKSPACE_NAME}.svc.cluster.local"
+            "host": "localhost"
         }
     ]
 }

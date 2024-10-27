@@ -39,6 +39,10 @@ k8s_resource(
   workload='myapp', 
   new_name="k8s-pod",
   labels="backend",
+  port_forwards=[
+    '8080',
+    '12345'
+  ],
 )
 
 # add a custom button to run a command in the backend pod
