@@ -1,0 +1,13 @@
+{
+    "configurations": [
+        {
+            "name": "Attach",
+            "type": "go",
+            "debugAdapter": "dlv-dap",
+            "request": "attach",
+            "mode": "remote",
+            "port": 12345,
+            "host": "app.${NESTO_USER_WORKSPACE_NAME}.svc.cluster.local"
+        }
+    ]
+}

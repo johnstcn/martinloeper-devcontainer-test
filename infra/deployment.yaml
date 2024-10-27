@@ -23,4 +23,7 @@ spec:
       - name: myapp
         image: go-test
         ports:
-        - containerPort: 8080
+        - name: http
+          containerPort: 8080
+        - name: debug
+          containerPort: 12345

@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 # set -eo pipefail
 
+$BROWSER http://app.${NESTO_USER_WORKSPACE_NAME}.local

@@ -10,4 +10,10 @@ export GOARCH=amd64
 # read the current tag if a tag is checked out, otherwise use the commit hash
 export NESTO_APP_VERSION=$(git describe --tags --always)
 
-(cd "${SCRIPT_DIR}/.." && go build -v -ldflags="-X main.Version=$NESTO_APP_VERSION" -o "${SCRIPT_DIR}/../build/backend" cmd/main.go)
+if [ "$1" == "debug" ]; then
+  echo "Building in debug mode"
+  (cd "${SCRIPT_DIR}/.." && go build -v -gcflags="all=-N -l" -ldflags="-X main.Version=$NESTO_APP_VERSION" -o "${SCRIPT_DIR}/../build/backend" cmd/main.go)
+else
+  echo "Building in release mode"
+  (cd "${SCRIPT_DIR}/.." && go build -v -ldflags="-X main.Version=$NESTO_APP_VERSION" -o "${SCRIPT_DIR}/../build/backend" cmd/main.go)
+fi
