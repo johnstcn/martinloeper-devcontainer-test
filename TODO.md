@@ -12,4 +12,4 @@ TODOs
   - test overriding GIT_EDITOR
 - install git config and git commit signing modules
   - https://registry.coder.com/modules/git-commit-signing
-  - https://registry.coder.com/modules/git-config
+  - https://registry.coder.com/modules/git-config 
