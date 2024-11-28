@@ -28,7 +28,7 @@
 	},
 
 	// TODO: how to reference relatively in coder
-	"postCreateCommand": "${containerWorkspaceFolder}/.devcontainer/post-create.sh",
+	"postCreateCommand": ".devcontainer/post-create.sh",
 
 	// TODO: try to change to vscode after moving startup script into Dockerfile
 	"containerUser": "root",
