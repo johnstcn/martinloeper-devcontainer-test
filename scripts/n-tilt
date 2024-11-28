@@ -3,23 +3,23 @@
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 # write a custom xdg-open script to open another URL instead of the default tilt URL
-if [ ! -f "/home/vscode/.local/bin/xdg-open" ]; then
+if [ ! -f "/root/.local/bin/xdg-open" ]; then
     echo "Installing xdg-open..."
-    install -d /home/vscode/.local/bin/
+    install -d /root/.local/bin/
     
-    cat <<'EOF' > /home/vscode/.local/bin/xdg-open
+    cat <<'EOF' > /root/.local/bin/xdg-open
 #!/bin/bash
 
 # TODO: print message when arg is not a URL
 if [ "$1" == "http://127.0.0.1:10350/" ]; then
-    $BROWSER $NESTO_TILT_URL   
+    $BROWSER $(echo $VSCODE_PROXY_URI | sed 's/{{port}}/10350/')
 else
     $BROWSER $*
 fi
 
 EOF
 
-chmod +x /home/vscode/.local/bin/xdg-open
+chmod +x /root/.local/bin/xdg-open
 fi
 
 # stop the placeholder server if it is running
