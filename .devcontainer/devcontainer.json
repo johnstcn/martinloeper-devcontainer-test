@@ -4,10 +4,6 @@
 		"dockerfile": "Dockerfile"
 	},
 	"features": {
-		"ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {},
-		"ghcr.io/devcontainers/features/docker-outside-of-docker:1": {},
-		"ghcr.io/lentzi90/features/tilt:0": {},
-		"ghcr.io/dhoeric/features/k9s:1": {},
 		"ghcr.io/devcontainers/features/aws-cli:1": {}
 	},
 
